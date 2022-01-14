@@ -1,5 +1,7 @@
+using GalleryApp.API.Extensions;
 using GalleryApp.Repository.Context;
 using GalleryApp.Repository.Repostiory;
+using GalleryApp.Service.Helpers;
 using GalleryApp.Service.Interfaces;
 using GalleryApp.Service.Services;
 using Microsoft.AspNetCore.Builder;
@@ -33,17 +35,22 @@ namespace GalleryApp.API
         {
 
             services.AddControllers();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "GalleryApp.API", Version = "v1" });
-            });
+            //services.AddSwaggerGen(c =>
+            //{
+            //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "GalleryApp.API", Version = "v1" });
+            //});
 
-            services.AddDbContext<GalleryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GalleryBase")));
+            //services.AddDbContext<GalleryContext>(options => options.UseSqlServer(Configuration.GetConnectionString("GalleryBase")));
 
-            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            //services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
-            services.AddTransient<IExhibitionService, ExhibitionService>();
-            services.AddCors();
+            //services.AddScoped<IExhibitionService, ExhibitionService>();
+
+            //services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
+            //services.AddCors();
+
+            services.ServiceConfiguration(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

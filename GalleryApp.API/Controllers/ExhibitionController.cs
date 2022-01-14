@@ -16,13 +16,19 @@ namespace GalleryApp.API.Controllers
 
         public ExhibitionController(IExhibitionService exhibitionService)
         {
-            this.ExhibitionService = exhibitionService;
+            ExhibitionService = exhibitionService;
         }
 
         [HttpGet]
         public List<ExhibitionVM> Index()
         {
             return ExhibitionService.GetExhbitions().ToList();
+        }
+
+        [HttpPost]
+        public void CreateExhibition([FromBody]ExhibitionVM data)
+        {
+            ExhibitionService.Add(data);
         }
     }
 }
