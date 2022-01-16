@@ -10,8 +10,8 @@ namespace GalleryApp.Repository.Repostiory
 {
     public class Repository<TEntity> : IRepository<TEntity> where TEntity : class
     {
-        private readonly GalleryContext GalleryContext;
-        private readonly DbSet<TEntity> Entities;
+        GalleryContext GalleryContext;
+        DbSet<TEntity> Entities;
 
         public Repository(GalleryContext galleryContext)
         {

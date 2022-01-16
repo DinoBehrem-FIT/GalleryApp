@@ -1,0 +1,9 @@
+    <form [formGroup]="exhibitionDetails" (ngSubmit)="create()">
+        <label>Title</label>
+        <input type="text" formControlName='title'>
+
+        <label>Description</label>
+        <input type="text" formControlName='description'>
+        <button type="submit">Submit</button>
+    </form>
+

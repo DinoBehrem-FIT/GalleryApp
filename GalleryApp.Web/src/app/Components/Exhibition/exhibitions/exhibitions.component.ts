@@ -9,13 +9,14 @@ import { NgModule } from '@angular/core';
   styleUrls: ['./exhibitions.component.css'],
 })
 export class ExhibitionsComponent implements OnInit {
-  exhibitions: any = [];
+  exhibitions: ExhibitionVM[] = [];
+  imagePath: string = '../../../../../pexels.jpg';
 
   constructor(private exhibitionService: ExhibitionsService) {}
 
   ngOnInit(): void {
     this.exhibitionService
-      .GetAllExhibitions()
+      .GetAll()
       .subscribe((data: any) => (this.exhibitions = data));
   }
 }

@@ -8,10 +8,28 @@ import { ExhibitionVM } from 'src/app/ViewModels/Exhibition/ExhibitionVM';
 })
 export class ExhibitionsService {
   url: string = 'https://localhost:44355/Exhibition';
-
+  options = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+    }),
+  };
   constructor(private http: HttpClient) {}
 
-  GetAllExhibitions(): any {
-    return this.http.get(this.url + '/Index');
+  GetAll(): Observable<ExhibitionVM[]> {
+    return this.http.get<ExhibitionVM[]>(this.url + '/Index');
+  }
+
+  Create(exhibition: ExhibitionVM): any {
+    return this.http
+      .post<ExhibitionVM>(
+        this.url + '/CreateExhibition',
+        exhibition,
+        this.options
+      )
+      .subscribe((data: any) =>
+        alert(
+          'Exhibition ' + '"' + data.title + '"' + ' successfully organized!'
+        )
+      );
   }
 }

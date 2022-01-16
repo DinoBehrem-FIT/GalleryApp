@@ -24,7 +24,9 @@
             "tsConfig": "tsconfig.app.json",
             "assets": [
               "src/favicon.ico",
-              "src/assets"
+              "src/assets",
+              "src/gtiCheetSheet.png",
+              "src/pexels.jpg"
             ],
             "styles": [
               "src/styles.css"

@@ -26,9 +26,11 @@ namespace GalleryApp.API.Controllers
         }
 
         [HttpPost]
-        public void CreateExhibition([FromBody]ExhibitionVM data)
+        public ActionResult CreateExhibition([FromBody]ExhibitionVM data)
         {
             ExhibitionService.Add(data);
+
+            return Ok(data);
         }
     }
 }

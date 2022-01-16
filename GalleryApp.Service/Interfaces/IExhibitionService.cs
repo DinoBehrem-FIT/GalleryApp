@@ -1,4 +1,5 @@
-﻿using GalleryApp.Service.ViewModels.Exhbition;
+﻿using GalleryApp.Core.Models;
+using GalleryApp.Service.ViewModels.Exhbition;
 using System;
 using System.Collections.Generic;
 
