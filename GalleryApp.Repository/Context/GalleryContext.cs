@@ -13,5 +13,8 @@ namespace GalleryApp.Repository.Context
         public GalleryContext(DbContextOptions<GalleryContext> options) : base(options){}
 
         public DbSet<Exhibition> Exhibitions { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<AuthenticationToken> AuthenticationTokens { get; set; }
     }
 }

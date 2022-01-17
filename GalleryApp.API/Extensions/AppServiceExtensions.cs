@@ -28,6 +28,9 @@ namespace GalleryApp.API.Extensions
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
 
             services.AddScoped<IExhibitionService, ExhibitionService>();
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthenticationService, AuthenticationService>();
+            services.AddScoped<IAuthenticationTokenService, AuthenticationTokenService>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 

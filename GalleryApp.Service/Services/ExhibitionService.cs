@@ -8,22 +8,31 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using GalleryApp.Service.ViewModels.User;
 
 namespace GalleryApp.Service.Services
 {
     public class ExhibitionService : IExhibitionService
     {
         private readonly IRepository<Exhibition> ExhibitionRepository;
+        private readonly IUserService UserService;
         private readonly IMapper Mapper;
 
-        public ExhibitionService(IRepository<Exhibition> exhibitionRepository, IMapper mapper)
+        public ExhibitionService(IRepository<Exhibition> exhibitionRepository, IUserService userService, IMapper mapper)
         {
             ExhibitionRepository = exhibitionRepository;
+            this.UserService = userService;
             Mapper = mapper;
         }
-        public void Add(ExhibitionVM obj)
+        public void Add(Account organizer, ExhibitionCreationVM obj)
         {
-            Exhibition exhibition = Mapper.Map<Exhibition>(obj);
+            Exhibition exhibition = new Exhibition() 
+            {
+                Title = obj.Title,
+                Description = obj.Description,
+                StartingDate = obj.StartingDate,
+                OrganizerId = organizer.Id
+            };
 
             ExhibitionRepository.Add(exhibition);
         }
@@ -33,13 +42,28 @@ namespace GalleryApp.Service.Services
             throw new NotImplementedException();
         }
 
+        public ExhibitionVM GetExhbition(string id)
+        {
+            Exhibition exhibition = ExhibitionRepository.GetAll().Where(exhibition => exhibition.Title == id).FirstOrDefault();
+
+            if (exhibition == null)
+            {
+                return null;
+            }
+            exhibition.Organizer = UserService.GetById(exhibition.OrganizerId);
+
+            return Mapper.Map<ExhibitionVM>(exhibition);
+        }
+
         public IEnumerable<ExhibitionVM> GetExhbitions()
         {
             return ExhibitionRepository.GetAll().Select(exhibition => new ExhibitionVM()
             {
                 Title = exhibition.Title,
-                Description = exhibition.Description
-            });
+                Description = exhibition.Description,
+                StartingDate = exhibition.StartingDate,
+                Organizer = Mapper.Map<UserVM>(UserService.GetById(exhibition.OrganizerId))
+            }); 
         }
 
         public IEnumerable<ExhibitionVM> GetExhibitionByDate(DateTime dateTime)

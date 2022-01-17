@@ -1,12 +1,12 @@
 <!-- Filter component  -->
-<img src="../../../../assets/Images/pexels.jpg" style="width: 300px; height:200px;">
 <div class="w-75">
     <div class="card d-flex flex-row bg-dark mt-2 mb-2" *ngFor="let exhibition of exhibitions" style="color: azure;">
         <img class="card-img-top w-25 " src="../../../../assets/Images/pexels.jpg" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">{{exhibition.title}}</h5>
             <p class="card-text">{{exhibition.description}}</p>
-            <a href="#" class="btn btn-primary">Join</a>
+            <input type="datetime-local" value="{{exhibition.startingDate}}">
+            <a routerLink='/Exhibition/{{exhibition.title}}' class="btn btn-primary">Join</a>
         </div>
     </div>
 </div>

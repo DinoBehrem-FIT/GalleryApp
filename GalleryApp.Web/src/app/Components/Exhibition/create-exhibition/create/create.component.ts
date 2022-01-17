@@ -6,7 +6,7 @@ import {
   FormControl,
 } from '@angular/forms';
 import { ExhibitionsService } from 'src/app/Services/Exhibition/exhibitions.service';
-import { ExhibitionVM } from 'src/app/ViewModels/Exhibition/ExhibitionVM';
+import { ExhibitionCreationVM } from 'src/app/ViewModels/Exhibition/ExhibitionCreationVM';
 
 @Component({
   selector: 'app-create',
@@ -15,6 +15,7 @@ import { ExhibitionVM } from 'src/app/ViewModels/Exhibition/ExhibitionVM';
 })
 export class CreateComponent implements OnInit {
   exhibitionDetails!: FormGroup;
+
   constructor(
     private exhbitinioService: ExhibitionsService,
     private formBuilder: FormBuilder
@@ -22,14 +23,15 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.exhibitionDetails = this.formBuilder.group({
-      title: 'Title',
-      description: 'Descritpion',
+      title: '',
+      description: '',
+      startingDate: Date.now,
     });
   }
 
   create() {
-    console.log(this.exhibitionDetails.value);
-
-    this.exhbitinioService.Create(this.exhibitionDetails.value as ExhibitionVM);
+    this.exhbitinioService.Create(
+      this.exhibitionDetails.value as ExhibitionCreationVM
+    );
   }
 }

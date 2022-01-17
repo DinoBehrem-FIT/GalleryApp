@@ -13,13 +13,13 @@ namespace GalleryApp.Core.Models
         public int Id { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        //public DateTime StartingDate { get; set; }
+        public DateTime StartingDate { get; set; }
         //public DateTime ExpiringTime { get; set; }
         //public ICollection<ExponentItem> Images { get; set; }
 
-        //[ForeignKey(nameof(OrganizerId))]
-        //public User Organizer { get; set; }
-        //public int OrganizerId { get; set; }
+        [ForeignKey(nameof(OrganizerId))]
+        public Account Organizer { get; set; }
+        public int OrganizerId { get; set; }
 
     }
 }
