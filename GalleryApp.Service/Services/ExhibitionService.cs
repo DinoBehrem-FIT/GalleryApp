@@ -76,6 +76,13 @@ namespace GalleryApp.Service.Services
             throw new NotImplementedException();
         }
 
+        public IEnumerable<ExhibitionVM> GetExhibitionsByFilters(ExhibitionFiltersVM exhibitionFilters)
+        {
+            IEnumerable<ExhibitionVM> exhibitionFiltersList = ExhibitionRepository.GetAll().Where(exhibition => (Mapper.Map<UserVM>(UserService.GetById(exhibition.OrganizerId)).Username == exhibitionFilters?.CreatatorName || string.IsNullOrEmpty(exhibitionFilters.CreatatorName)) && exhibition.StartingDate >= exhibitionFilters.DateFrom && exhibition.StartingDate <= exhibitionFilters.DateTo).Select(exhibition => Mapper.Map<ExhibitionVM>(exhibition)).ToList();
+
+            return exhibitionFiltersList;
+        }
+
         public void Update(ExhibitionVM obj)
         {
             throw new NotImplementedException();

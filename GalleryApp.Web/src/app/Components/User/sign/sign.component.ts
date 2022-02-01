@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from 'src/app/Services/User/user.service';
-import { AuthTokenVM } from 'src/app/ViewModels/Authorization/AuthTokenVM';
 import { LoginVM } from 'src/app/ViewModels/User/LoginVM';
 
 @Component({
@@ -11,7 +10,6 @@ import { LoginVM } from 'src/app/ViewModels/User/LoginVM';
 })
 export class SignComponent implements OnInit {
   login!: FormGroup;
-  token!: AuthTokenVM;
   errorMessage: string = '';
   constructor(
     private userService: UserService,

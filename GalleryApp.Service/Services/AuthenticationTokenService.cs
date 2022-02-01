@@ -21,5 +21,10 @@ namespace GalleryApp.Service.Services
         {
             TokenRepository.Add(token);
         }
+
+        public void RemoveToken(AuthenticationToken token)
+        {
+            TokenRepository.Remove(token);
+        }
     }
 }

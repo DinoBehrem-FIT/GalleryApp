@@ -15,7 +15,7 @@ import { ExhibitionCreationVM } from 'src/app/ViewModels/Exhibition/ExhibitionCr
 })
 export class CreateComponent implements OnInit {
   exhibitionDetails!: FormGroup;
-
+  auth_token: string = '' + localStorage.getItem('authentication-token');
   constructor(
     private exhbitinioService: ExhibitionsService,
     private formBuilder: FormBuilder
@@ -30,8 +30,12 @@ export class CreateComponent implements OnInit {
   }
 
   create() {
-    this.exhbitinioService.Create(
-      this.exhibitionDetails.value as ExhibitionCreationVM
-    );
+    if (this.auth_token != '' && this.auth_token != 'null') {
+      this.exhbitinioService.Create(
+        this.exhibitionDetails.value as ExhibitionCreationVM
+      );
+    } else {
+      alert('You are not registered!');
+    }
   }
 }

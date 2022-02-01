@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgModule } from '@angular/core';
+import { filter } from 'rxjs';
 import { ExhibitionsService } from 'src/app/Services/Exhibition/exhibitions.service';
 import { ExhibitionVM } from 'src/app/ViewModels/Exhibition/ExhibitionVM';
-import { NgModule } from '@angular/core';
-
+import { FilterVM } from 'src/app/ViewModels/Filter/FilterVM';
 @Component({
   selector: 'app-exhibitions',
   templateUrl: './exhibitions.component.html',
@@ -18,5 +19,11 @@ export class ExhibitionsComponent implements OnInit {
     this.exhibitionService
       .GetAll()
       .subscribe((data: any) => (this.exhibitions = data));
+  }
+
+  getByFilters(filters: FilterVM): void {
+    this.exhibitionService.Filter(filters).subscribe((data: any) => {
+      this.exhibitions = data;
+    });
   }
 }

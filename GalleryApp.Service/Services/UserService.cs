@@ -47,7 +47,7 @@ namespace GalleryApp.Service.Services
 
         public Account GetByLogin(LoginVM login)
         {
-            return UserRepository.GetAll().Where(user => user.Username == login.Username && user.Password == login.Password).FirstOrDefault();
+            return UserRepository.GetAll().FirstOrDefault(user => user.Username != null && user.Username == login.Username && user.Password == login.Password);
         }
 
         public List<UserVM> GetUsers()

@@ -1,13 +1,20 @@
+<div class="container pt-3">
     <form [formGroup]="exhibitionDetails" (ngSubmit)="create()">
-        <label>Title</label>
-        <input type="text" formControlName='title'>
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" class="form-control" id="title" aria-describedby="title" placeholder="Enter title"
+                formControlName='title'>
+        </div>
+        <div class="form-group">
+            <label for="description">Description</label>
+            <textarea type="text" class="form-control" id="description" placeholder="Description"
+                formControlName='description'></textarea>
+        </div>
+        <div class="form-group">
+            <label for="startingDate">Starting date:</label>
+            <input type="datetime-local" class="form-control" id="startingDate" formControlName='startingDate'>
+        </div>
 
-        <label>Description</label>
-        <input type="text" formControlName='description'>
-
-        <label>Starting date</label>
-        <input type="datetime-local" formControlName='startingDate'>
-        <br>
-        <button type="submit">Submit</button>
+        <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-
+</div>

@@ -1,0 +1,84 @@
+<!-- <nav class="navbar navbar-expand-lg navbar-light navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Galleriana</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link active" routerLink="Exhibitions">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" routerLink="Create">Create</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" routerLink="Subscriptions">Subscriptions</a>
+        </li>
+        <li class="nav-item dropdown">
+          <div class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+          </div>>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" >Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+  
+    </div>
+  </nav> -->
+
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" routerLink="">Galleriana</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  
+    <div class="collapse navbar-collapse d-flex flex-row" id="navbarSupportedContent">
+
+      <ul class="navbar-nav mr-auto w-25">
+        <li class="nav-item active">
+          <a class="nav-link active" routerLink="Exhibitions">Home</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" routerLink="/Subscriptions">Subscriptions</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link disabled" routerLink="Create">Create</a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0 w-75">
+        <input class="form-control mr-sm-2 w-75" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+      </form>
+
+      <button *ngIf="!LoginInfo().isLogged" class="btn btn-secondary" routerLink="Login">Login</button>
+
+      <div class="collapse navbar-collapse w-25" id="navbarSupportedContent" *ngIf="LoginInfo().isLogged">
+        <ul class="navbar-nav mr-auto w-100 d-flex flex-row" style="justify-content:end">
+            <li class="nav-item dropdown" style="margin-left:-40px;">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+                <strong>mdo</strong>
+              </a>
+              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Account settings</a>
+                <a class="dropdown-item" href="#">Subscribers</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" (click)="Logout()">Log out</a>
+              </div>
+            </li>
+          </ul>
+      </div>
+      <!-- <button *ngIf="!LoginInfo()" routerLink="Login">Login</button> -->
+    </div>
+  </nav>
+  <router-outlet></router-outlet>
+  

@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static GalleryApp.Service.Helpers.MyAuthTokenExtension;
 
 namespace GalleryApp.API.Controllers
 {
@@ -39,13 +40,13 @@ namespace GalleryApp.API.Controllers
         }
 
         [HttpPost]
-        public ActionResult<AuthTokenVM> Login([FromBody]LoginVM login)
+        public ActionResult<LoginInfo> Login([FromBody]LoginVM login)
         {
             User account = UserService.GetByLogin(login) as User;
 
             if (account == null)
             {
-                return null; 
+                return new LoginInfo(null); 
             }
 
             AuthenticationToken token = new AuthenticationToken()
@@ -58,9 +59,22 @@ namespace GalleryApp.API.Controllers
 
             AuthenticationTokenService.AddToken(token);
 
-            AuthTokenVM tokenVM = new AuthTokenVM { IPAddress = token.IPAddress, Account = account, Value = token.Value, DateCreated = token.DateCreated };
+            return new LoginInfo(token);
+        }
 
-            return tokenVM;
+        [HttpPost]
+        public ActionResult Logout()
+        {
+            AuthenticationToken authenticationToken = HttpContext.GetUserOfAuthToken();
+
+            if (authenticationToken == null)
+            {
+                return Ok();
+            }
+
+            AuthenticationTokenService.RemoveToken(authenticationToken);
+
+            return Ok();
         }
     }
 }

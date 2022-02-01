@@ -10,5 +10,7 @@ namespace GalleryApp.Service.Interfaces
     public interface IAuthenticationTokenService
     {
         public void AddToken(AuthenticationToken token);
+        public void RemoveToken(AuthenticationToken token);
+
     }
 }

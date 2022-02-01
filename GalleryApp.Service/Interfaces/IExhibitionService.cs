@@ -14,5 +14,7 @@ namespace GalleryApp.Service.Interfaces
         IEnumerable<ExhibitionVM> GetExhbitions();
         IEnumerable<ExhibitionVM> GetExhibitionByTitle(string title);
         IEnumerable<ExhibitionVM> GetExhibitionByDate(DateTime dateTime);
+        IEnumerable<ExhibitionVM> GetExhibitionsByFilters(ExhibitionFiltersVM exhibitionFilters);
+
     }
 }

@@ -1,0 +1,22 @@
+<form class="d-flex flex-column" [formGroup]="params" (ngSubmit)="sendFilters()">
+<div>
+    <label>Date from:</label>
+    <input type="datetime-local" class="form-control" formControlName="dateFrom"><br>
+    <label>Date to:</label>
+    <input type="datetime-local" class="form-control" formControlName="dateTo"><br>
+</div>
+<div>
+    <label>Creator name:</label>
+    <input type="text" class="form-control" formControlName="creatorName">
+</div>
+<div>
+    <label>Type:</label>
+    <div>
+        <input type="radio">
+        <label>Photographies</label>
+        <input type="radio">
+        <label>Paintings & drawings</label>
+    </div>
+</div>
+<button type="submit" class="btn btn-secondary">Filter</button>
+</form>

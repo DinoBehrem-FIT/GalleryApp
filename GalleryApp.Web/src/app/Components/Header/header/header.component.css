@@ -1,0 +1,7 @@
+div a {
+  color: #fff;
+}
+
+div a:hover {
+  color: #000;
+}

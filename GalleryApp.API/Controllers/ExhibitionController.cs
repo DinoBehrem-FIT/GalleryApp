@@ -44,9 +44,7 @@ namespace GalleryApp.API.Controllers
         [HttpPost]
         public ActionResult CreateExhibition([FromBody]ExhibitionCreationVM data)
         {
-            //string authToken = ControllerContext.HttpContext.Request.Headers["authentication-token"];
-
-            Account account = ControllerContext.HttpContext.GetUserOfAuthToken();
+            Account account = ControllerContext.HttpContext.GetUserOfAuthToken().Account;
 
             if (account == null)
             {
@@ -56,6 +54,22 @@ namespace GalleryApp.API.Controllers
             ExhibitionService.Add(account, data);
 
             return Ok(data);
+        }
+
+        [HttpGet]
+        public ActionResult<List<ExhibitionVM>> GetByFilter(string creatorName, DateTime dateFrom = default, DateTime dateTo = default)
+        {
+
+            ExhibitionFiltersVM exhibitionFilters = new ExhibitionFiltersVM()
+            {
+                CreatatorName = creatorName,
+                DateFrom = dateFrom == default ? DateTime.Now : dateFrom,
+                DateTo = dateTo == default ? DateTime.MaxValue : dateTo
+            };
+
+            List<ExhibitionVM> exhibitions = ExhibitionService.GetExhibitionsByFilters(exhibitionFilters).ToList();
+
+            return exhibitions;
         }
     }
 }
